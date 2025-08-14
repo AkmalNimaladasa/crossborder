@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon: A modern compass icon as requested -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='%23E30B5C' d='M232 128a104 104 0 1 1-104-104a104.11 104.11 0 0 1 104 104Zm-16 0a88 88 0 1 0-88 88a88.1 88.1 0 0 0 88-88ZM128 72a8 8 0 0 0-8 8v40H80a8 8 0 0 0-7.38 4.67a8 8 0 0 0 2 8.78l40 40a8 8 0 0 0 11.31 0l40-40a8 8 0 0 0 2-8.78A8 8 0 0 0 176 120h-40V80a8 8 0 0 0-8-8ZM96 144.69l-16-16h22.69ZM160 144.69L137.31 122H152Z'/%3E%3C/svg%3E" type="image/svg+xml">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Cross Border Travels is a leading travel agency in Sri Lanka providing global ticketing services and a luxurious Airbnb stay in Mount Lavinia. Plan your dream vacation with us.">
+    <meta name="keywords" content="Cross Border Travels, travel agency, Sri Lanka, ticketing services, Airbnb, Mount Lavinia, vacation, flights, air tickets, Anura Nimaladasa, lkcrossborder, travel packages, modern website, whatsapp">
+    <meta name="author" content="Anura Nimaladasa">
+
+    <title>Cross Border Travels - Global Ticketing & Mount Lavinia Airbnb</title>
+
+    <!-- Tailwind CSS CDN for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enable dark mode with a 'dark' class
+            theme: {
+                extend: {
+                    colors: {
+                        'raspberry-red': '#E30B5C',
+                        'jet-black': '#121212',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        fadeIn: 'fadeIn 1s ease-in-out',
+                        slideInUp: 'slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+                        heroText: 'heroText 1.5s ease-out forwards',
+                        scaleIn: 'scaleIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+                        buttonPress: 'buttonPress 0.2s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 },
+                        },
+                        slideInUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: 0 },
+                            '100%': { transform: 'translateY(0)', opacity: 1 },
+                        },
+                        heroText: {
+                            '0%': { opacity: 0, transform: 'translateY(50px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' },
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.95)', opacity: 0 },
+                            '100%': { transform: 'scale(1)', opacity: 1 },
+                        },
+                        buttonPress: {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(0.95)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts for 'Inter' -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icon library (Phosphor Icons) for UI elements -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+
+    <!-- Custom CSS for subtle animations and hover effects -->
+    <style>
+        /* General button styling and hover/active effect */
+        .custom-button {
+            transition: all 0.3s ease;
+        }
+        .custom-button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(227, 11, 92, 0.4);
+        }
+        .custom-button:active {
+            animation: buttonPress 0.2s ease-out forwards;
+        }
+        /* Styling for cards in the services and gallery sections */
+        .card-hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        .dark .card-hover-effect:hover {
+            box-shadow: 15px 30px rgba(255, 255, 255, 0.05);
+        }
+        /* Mobile menu specific styling */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        #mobile-menu.open {
+            max-height: 200px; /* Adjust as needed for content */
+            opacity: 1;
+        }
+        /* Base styles for scroll-based animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-white dark:bg-jet-black text-gray-800 dark:text-white font-sans transition-colors duration-500">
+    <!-- Header Section with a clear, fixed navigation bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-jet-black bg-opacity-70 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex justify-between items-center">
+                <!-- Website Logo with a compass icon -->
+                <div class="flex items-center space-x-2">
+                    <i class="ph-bold ph-compass text-2xl text-raspberry-red"></i>
+                    <a href="#" class="text-xl font-bold tracking-tight">Cross Border Travels</a>
+                </div>
+
+                <!-- Desktop Navigation Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-raspberry-red dark:hover:text-white transition-colors duration-300 font-semibold">Home</a>
+                    <a href="#services" class="text-gray-600 dark:text-gray-300 hover:text-raspberry-red dark:hover:text-white transition-colors duration-300 font-semibold">Services</a>
+                    <a href="#airbnb" class="text-gray-600 dark:text-gray-300 hover:text-raspberry-red dark:hover:text-white transition-colors duration-300 font-semibold">Airbnb</a>
+                    <a href="#gallery" class="text-gray-600 dark:text-gray-300 hover:text-raspberry-red dark:hover:text-white transition-colors duration-300 font-semibold">Gallery</a>
+                    <a href="#testimonials" class="text-gray-600 dark:text-gray-300 hover:text-raspberry-red dark:hover:text-white transition-colors duration-300 font-semibold">Testimonials</a>
+                    <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-raspberry-red dark:hover:text-white transition-colors duration-300 font-semibold">Contact</a>
+                </div>
+
+                <!-- Night Mode Toggle and Mobile Menu Button -->
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" aria-label="Toggle dark mode" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors duration-300">
+                        <i class="ph-bold ph-moon text-xl dark:hidden"></i>
+                        <i class="ph-bold ph-sun text-xl hidden dark:block text-raspberry-red"></i>
+                    </button>
+                    <button id="mobile-menu-toggle" aria-label="Open mobile menu" class="md:hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors duration-300">
+                        <i class="ph-bold ph-list text-2xl text-gray-800 dark:text-white"></i>
+                    </button>
+                </div>
+            </nav>
+            <!-- Mobile Menu content, toggled by the mobile button -->
+            <div id="mobile-menu" class="md:hidden mt-4">
+                <div class="flex flex-col space-y-4 text-center">
+                    <a href="#" class="block py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-300 font-semibold">Home</a>
+                    <a href="#services" class="block py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-300 font-semibold">Services</a>
+                    <a href="#airbnb" class="block py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-300 font-semibold">Airbnb</a>
+                    <a href="#gallery" class="block py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-300 font-semibold">Gallery</a>
+                    <a href="#testimonials" class="block py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-300 font-semibold">Testimonials</a>
+                    <a href="#contact" class="block py-2 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-300 font-semibold">Contact</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section: The main banner with a captivating image and call-to-action -->
+        <section class="relative h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.pexels.com/photos/1007427/pexels-photo-1007427.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" 
+                     onerror="this.src='https://placehold.co/1920x1080/E30B5C/ffffff?text=Experience+the+World'"
+                     alt="Woman traveling with a suitcase, showcasing the freedom and adventure of travel" 
+                     class="w-full h-full object-cover object-center animate-fadeIn">
+            </div>
+            <div class="relative z-10 text-center px-6 py-12 bg-black dark:bg-jet-black bg-opacity-50 rounded-3xl shadow-2xl backdrop-blur-sm mx-4 max-w-2xl">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-4 animate-heroText">Travel Without Limits</h1>
+                <p class="text-lg md:text-xl text-white text-opacity-80 mt-4 animate-heroText" style="animation-delay: 0.5s;">Your journey begins here. We handle the logistics, you create the memories.</p>
+                <a href="#contact" class="mt-8 inline-block px-8 py-4 bg-raspberry-red text-white font-semibold rounded-full shadow-lg custom-button animate-heroText" style="animation-delay: 1s;">Plan Your Trip</a>
+            </div>
+        </section>
+
+        <!-- Services Section: A detailed overview of the core offerings -->
+        <section id="services" class="py-20 bg-white dark:bg-jet-black text-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4 animate-on-scroll">Our Services</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 mb-12 animate-on-scroll" style="transition-delay: 0.2s;">We provide seamless global ticketing services to clients all around the world.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 text-left">
+                    <!-- Ticketing Service Card -->
+                    <div class="md:col-span-2 flex justify-center">
+                        <div class="p-8 max-w-2xl w-full rounded-3xl shadow-xl bg-gray-50 dark:bg-gray-800 card-hover-effect animate-on-scroll" style="transition-delay: 0.4s;">
+                            <div class="flex items-center space-x-4 mb-4">
+                                <i class="ph-bold ph-ticket text-5xl text-raspberry-red"></i>
+                                <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Ticketing Services</h3>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                Whether you're traveling First Class, Business Class, or Economy, our team ensures a smooth booking experience.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Airbnb Section: A new dedicated section for the Mount Lavinia Airbnb -->
+        <section id="airbnb" class="py-20 bg-gray-100 dark:bg-gray-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4 text-center animate-on-scroll">Our Mount Lavinia Airbnb</h2>
+                <p class="text-center text-lg text-gray-600 dark:text-gray-400 mb-12 animate-on-scroll" style="transition-delay: 0.2s;">A luxurious and relaxing holiday awaits you by the sea.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <!-- Airbnb Image -->
+                    <div class="rounded-3xl overflow-hidden shadow-2xl animate-on-scroll" style="transition-delay: 0.4s;">
+                        <img src="https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                             onerror="this.src='https://placehold.co/1000x800/E30B5C/ffffff?text=Mount+Lavinia+Airbnb'"
+                             alt="Stunning swimming pool at the Mount Lavinia Airbnb, Sri Lanka"
+                             class="w-full h-auto object-cover">
+                    </div>
+                    <!-- Airbnb Details -->
+                    <div class="space-y-6 text-left animate-on-scroll" style="transition-delay: 0.6s;">
+                        <h3 class="text-3xl font-bold text-gray-800 dark:text-white">Experience a Luxurious Stay</h3>
+                        <p class="text-lg text-gray-600 dark:text-gray-400">
+                            Our exclusive Airbnb in Mount Lavinia offers the perfect escape. Wake up to beautiful views, take a dip in our stunning pool, and enjoy a comfortable stay with all the modern amenities you need.
+                        </p>
+                        <!-- Amenities list -->
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="flex items-center space-x-3 text-gray-700 dark:text-gray-300">
+                                <i class="ph-bold ph-swimming-pool text-2xl text-raspberry-red"></i>
+                                <span>Swimming Pool</span>
+                            </div>
+                            <div class="flex items-center space-x-3 text-gray-700 dark:text-gray-300">
+                                <i class="ph-bold ph-snowflake text-2xl text-raspberry-red"></i>
+                                <span>Air Conditioning</span>
+                            </div>
+                            <div class="flex items-center space-x-3 text-gray-700 dark:text-gray-300">
+                                <i class="ph-bold ph-wifi-high text-2xl text-raspberry-red"></i>
+                                <span>High-Speed Wi-Fi</span>
+                            </div>
+                            <div class="flex items-center space-x-3 text-gray-700 dark:text-gray-300">
+                                <i class="ph-bold ph-cooking-pot text-2xl text-raspberry-red"></i>
+                                <span>Fully Equipped Kitchen</span>
+                            </div>
+                        </div>
+                        <a href="#contact" class="inline-block px-8 py-4 bg-raspberry-red text-white font-semibold rounded-full shadow-lg custom-button mt-4">Book Your Stay</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section: Showcasing a wider range of high-quality images -->
+        <section id="gallery" class="py-20 bg-white dark:bg-jet-black text-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4 animate-on-scroll">Popular Destinations</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 mb-12 animate-on-scroll" style="transition-delay: 0.2s;">Explore our favorite spots from around the globe.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="rounded-3xl overflow-hidden shadow-lg card-hover-effect animate-on-scroll group" style="transition-delay: 0.4s;">
+                        <img src="https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/121212/ffffff?text=Paris%2C+France';" alt="Eiffel Tower in Paris, France" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-gray-50 dark:bg-gray-800 group-hover:bg-raspberry-red group-hover:text-white transition-colors duration-300">
+                            <h4 class="font-semibold">Paris, France</h4>
+                        </div>
+                    </div>
+                    <div class="rounded-3xl overflow-hidden shadow-lg card-hover-effect animate-on-scroll group" style="transition-delay: 0.6s;">
+                        <img src="https://images.pexels.com/photos/1078981/pexels-photo-1078981.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/121212/ffffff?text=Santorini%2C+Greece';" alt="Santorini, Greece with its iconic white and blue architecture" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-gray-50 dark:bg-gray-800 group-hover:bg-raspberry-red group-hover:text-white transition-colors duration-300">
+                            <h4 class="font-semibold">Santorini, Greece</h4>
+                        </div>
+                    </div>
+                    <div class="rounded-3xl overflow-hidden shadow-lg card-hover-effect animate-on-scroll group" style="transition-delay: 0.8s;">
+                        <img src="https://images.pexels.com/photos/1618606/pexels-photo-1618606.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/121212/ffffff?text=The+Great+Wall%2C+China';" alt="The Great Wall of China, a massive historical structure" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-gray-50 dark:bg-gray-800 group-hover:bg-raspberry-red group-hover:text-white transition-colors duration-300">
+                            <h4 class="font-semibold">The Great Wall, China</h4>
+                        </div>
+                    </div>
+                    <div class="rounded-3xl overflow-hidden shadow-lg card-hover-effect animate-on-scroll group" style="transition-delay: 1s;">
+                        <img src="https://images.pexels.com/photos/1647913/pexels-photo-1647913.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/121212/ffffff?text=Tokyo%2C+Japan';" alt="A neon-lit street in Tokyo, Japan at night" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-gray-50 dark:bg-gray-800 group-hover:bg-raspberry-red group-hover:text-white transition-colors duration-300">
+                            <h4 class="font-semibold">Tokyo, Japan</h4>
+                        </div>
+                    </div>
+                    <div class="rounded-3xl overflow-hidden shadow-lg card-hover-effect animate-on-scroll group" style="transition-delay: 1.2s;">
+                        <img src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/121212/ffffff?text=Taj+Mahal%2C+India';" alt="The Taj Mahal in Agra, India during the day" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-gray-50 dark:bg-gray-800 group-hover:bg-raspberry-red group-hover:text-white transition-colors duration-300">
+                            <h4 class="font-semibold">Taj Mahal, India</h4>
+                        </div>
+                    </div>
+                    <div class="rounded-3xl overflow-hidden shadow-lg card-hover-effect animate-on-scroll group" style="transition-delay: 1.4s;">
+                        <img src="https://images.pexels.com/photos/2088205/pexels-photo-2088205.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/121212/ffffff?text=Rome%2C+Italy';" alt="The Colosseum in Rome, Italy at sunset" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-gray-50 dark:bg-gray-800 group-hover:bg-raspberry-red group-hover:text-white transition-colors duration-300">
+                            <h4 class="font-semibold">Rome, Italy</h4>
+                        </div>
+                    </div>
+                    <div class="rounded-3xl overflow-hidden shadow-lg card-hover-effect animate-on-scroll group" style="transition-delay: 1.6s;">
+                        <img src="https://images.pexels.com/photos/1483053/pexels-photo-1483053.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/121212/ffffff?text=Sydney%2C+Australia';" alt="The Sydney Opera House in Australia with the harbor in the background" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-gray-50 dark:bg-gray-800 group-hover:bg-raspberry-red group-hover:text-white transition-colors duration-300">
+                            <h4 class="font-semibold">Sydney, Australia</h4>
+                        </div>
+                    </div>
+                    <div class="rounded-3xl overflow-hidden shadow-lg card-hover-effect animate-on-scroll group" style="transition-delay: 1.8s;">
+                        <img src="https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/121212/ffffff?text=Dubai%2C+UAE';" alt="A luxurious resort in Dubai, UAE" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-gray-50 dark:bg-gray-800 group-hover:bg-raspberry-red group-hover:text-white transition-colors duration-300">
+                            <h4 class="font-semibold">Dubai, UAE</h4>
+                        </div>
+                    </div>
+                    <!-- Updated image for New York -->
+                    <div class="rounded-3xl overflow-hidden shadow-lg card-hover-effect animate-on-scroll group" style="transition-delay: 2s;">
+                        <img src="https://images.pexels.com/photos/220201/pexels-photo-220201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" onerror="this.onerror=null;this.src='https://placehold.co/600x400/121212/ffffff?text=New+York%2C+USA';" alt="Statue of Liberty in New York, USA" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-gray-50 dark:bg-gray-800 group-hover:bg-raspberry-red group-hover:text-white transition-colors duration-300">
+                            <h4 class="font-semibold">New York, USA</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Testimonials Section: To provide social proof and credibility -->
+        <section id="testimonials" class="py-20 bg-gray-100 dark:bg-gray-900 text-center">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4 animate-on-scroll">What Our Clients Say</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 mb-12 animate-on-scroll" style="transition-delay: 0.2s;">Hear from satisfied travelers who trusted us with their journey.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="p-8 rounded-3xl shadow-xl bg-white dark:bg-gray-800 text-left animate-on-scroll" style="transition-delay: 0.4s;">
+                        <p class="text-lg italic text-gray-700 dark:text-gray-300 mb-4">"Booking my flight was a breeze! The team was professional and found me the best deal. I'm already planning my next trip with them."</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/40x40/E30B5C/ffffff?text=JN" onerror="this.onerror=null;this.src='https://placehold.co/40x40/E30B5C/ffffff?text=JN';" alt="Client's profile picture" class="w-10 h-10 rounded-full mr-4">
+                            <div>
+                                <p class="font-bold text-gray-800 dark:text-white">Jane Doe</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Happy Traveler</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="p-8 rounded-3xl shadow-xl bg-white dark:bg-gray-800 text-left animate-on-scroll" style="transition-delay: 0.6s;">
+                        <p class="text-lg italic text-gray-700 dark:text-gray-300 mb-4">"The Mount Lavinia Airbnb was beyond my expectations. The pool and amenities were fantastic. A truly luxurious and relaxing holiday."</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/40x40/121212/ffffff?text=JD" onerror="this.onerror=null;this.src='https://placehold.co/40x40/121212/ffffff?text=JD';" alt="Client's profile picture" class="w-10 h-10 rounded-full mr-4">
+                            <div>
+                                <p class="font-bold text-gray-800 dark:text-white">John Smith</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Airbnb Guest</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lead Form Section: Contact form for user inquiries -->
+        <section id="contact" class="py-20 bg-white dark:bg-jet-black">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-gray-100 dark:bg-gray-800 p-8 md:p-12 rounded-3xl shadow-2xl animate-on-scroll">
+                    <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4 text-center">Plan Your Adventure</h2>
+                    <p class="text-center text-gray-600 dark:text-gray-400 mb-8">Fill out the form below to get a personalized quote and assistance from our travel expert.</p>
+                    
+                    <form id="lead-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Full Name</label>
+                            <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-xl border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-gray-800 dark:text-white shadow-sm focus:border-raspberry-red focus:ring focus:ring-raspberry-red focus:ring-opacity-50 transition-colors duration-300 p-3">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</label>
+                            <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-xl border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-gray-800 dark:text-white shadow-sm focus:border-raspberry-red focus:ring focus:ring-raspberry-red focus:ring-opacity-50 transition-colors duration-300 p-3">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Phone Number (with country code)</label>
+                            <input type="tel" id="phone" name="phone" value="+94" required class="mt-1 block w-full rounded-xl border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-gray-800 dark:text-white shadow-sm focus:border-raspberry-red focus:ring focus:ring-raspberry-red focus:ring-opacity-50 transition-colors duration-300 p-3">
+                        </div>
+                        <div>
+                            <label for="destination" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Destination</label>
+                            <input type="text" id="destination" name="destination" required class="mt-1 block w-full rounded-xl border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-gray-800 dark:text-white shadow-sm focus:border-raspberry-red focus:ring focus:ring-raspberry-red focus:ring-opacity-50 transition-colors duration-300 p-3">
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="date" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Preferred Travel Date</label>
+                                <input type="date" id="date" name="date" required class="mt-1 block w-full rounded-xl border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-gray-800 dark:text-white shadow-sm focus:border-raspberry-red focus:ring focus:ring-raspberry-red focus:ring-opacity-50 transition-colors duration-300 p-3">
+                            </div>
+                            <div>
+                                <label for="class" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Ticket Class</label>
+                                <select id="class" name="class" required class="mt-1 block w-full rounded-xl border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-gray-800 dark:text-white shadow-sm focus:border-raspberry-red focus:ring focus:ring-raspberry-red focus:ring-opacity-50 transition-colors duration-300 p-3">
+                                    <option value="">Select a class</option>
+                                    <option value="economy">Economy</option>
+                                    <option value="business">Business</option>
+                                    <option value="first">First Class</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Additional Message</label>
+                            <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-xl border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-gray-800 dark:text-white shadow-sm focus:border-raspberry-red focus:ring focus:ring-raspberry-red focus:ring-opacity-50 transition-colors duration-300 p-3"></textarea>
+                        </div>
+                        <div id="form-message" class="hidden text-center p-3 rounded-lg text-sm font-medium"></div>
+                        <div>
+                            <button type="submit" class="w-full px-6 py-4 bg-raspberry-red text-white font-semibold rounded-xl shadow-lg hover:shadow-xl custom-button transition-all duration-300">
+                                Chat on WhatsApp
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section: Includes new WhatsApp button and corrected name -->
+    <footer class="bg-jet-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <div class="text-sm text-gray-400">&copy; 2025 Cross Border Travels. All rights reserved.</div>
+                <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-8 space-y-4 md:space-y-0">
+                    <div class="flex items-center space-x-2">
+                        <i class="ph-bold ph-user text-raspberry-red"></i>
+                        <span class="text-gray-300">Anura Nimaladasa</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="ph-bold ph-envelope text-raspberry-red"></i>
+                        <a href="mailto:lkcrossborder@gmail.com" class="text-gray-300 hover:text-white transition-colors duration-300">lkcrossborder@gmail.com</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="ph-bold ph-phone text-raspberry-red"></i>
+                        <a href="tel:+94777727250" class="text-gray-300 hover:text-white transition-colors duration-300">+94 77 772 7250</a>
+                    </div>
+                    <!-- The visible WhatsApp button -->
+                    <a href="https://wa.me/94775120885?text=${encodedMessage}" target="_blank" class="flex items-center space-x-2 custom-button p-2 rounded-full hover:bg-green-600 transition-colors duration-300">
+                        <i class="ph-bold ph-whatsapp-logo text-green-400 hover:text-white text-xl"></i>
+                        <span class="text-gray-300 hover:text-white transition-colors duration-300">Chat on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </footer>
+
+    <!-- JavaScript for Night Mode Toggle, Mobile Menu, Scroll-based Animations and Email Form -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const mobileMenuToggleBtn = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const htmlElement = document.documentElement;
+            const leadForm = document.getElementById('lead-form');
+            const formMessage = document.getElementById('form-message');
+
+            // --- Theme Toggle Logic ---
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                htmlElement.classList.add(savedTheme);
+            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                htmlElement.classList.add('dark');
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    localStorage.setItem('theme', '');
+                } else {
+                    htmlElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+
+            // --- Mobile Menu Toggle Logic ---
+            mobileMenuToggleBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('open');
+            });
+
+            // --- Scroll-based Animation Logic ---
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+
+            // --- WhatsApp Form Logic ---
+            leadForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const destination = document.getElementById('destination').value;
+                const date = document.getElementById('date').value;
+                const ticketClass = document.getElementById('class').value;
+                const message = document.getElementById('message').value;
+
+                // Construct the WhatsApp message body
+                const whatsappMessage = `
+*New Travel Inquiry*
+---
+*Name:* ${name}
+*Email:* ${email}
+*Phone:* ${phone}
+*Destination:* ${destination}
+*Travel Date:* ${date}
+*Ticket Class:* ${ticketClass}
+*Message:* ${message}
+`;
+
+                // URL encode the message for the WhatsApp link
+                const encodedMessage = encodeURIComponent(whatsappMessage);
+                const whatsappUrl = `https://wa.me/94775120885?text=${encodedMessage}`;
+
+                // Open the user's WhatsApp chat
+                window.open(whatsappUrl, '_blank');
+
+                // Display a success message
+                formMessage.textContent = 'Your WhatsApp chat is opening with the inquiry details.';
+                formMessage.className = 'block bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-200 text-center p-3 rounded-xl mb-4 animate-fadeIn pointer-events-none';
+                
+                // Clear the form fields after a short delay
+                setTimeout(() => {
+                    leadForm.reset();
+                    formMessage.classList.add('hidden');
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>
